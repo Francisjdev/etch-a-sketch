@@ -1,5 +1,6 @@
 const container = document.querySelector("#container");
 const btn = document.querySelector("button")
+const hexCharacters = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"]
 let side;
 btn.addEventListener("click", prompto);
 const containerSize = 960;
@@ -17,11 +18,27 @@ function prompto(){
     fillBox()
 }
 function fillBox(){
+   
     for( let i = 0; i <(side*side); i++){
     let div = document.createElement("div");
+    
     div.classList.add("box")
     div.setAttribute("style",`width :${boxSize}px`);
     container.appendChild(div);
+    div.addEventListener("mouseover", function() {
+      
+        let hexColorRep = "#"
+        for (let index = 0; index < 6; index++){
+            const randomPosition = Math.floor ( Math.random() * hexCharacters.length ) 
+            hexColorRep += hexCharacters[randomPosition]
+        }
+        div.style.backgroundColor = `${hexColorRep}`;
+    });
 }
+
 }
+function getCharacter(index) {
+	return hexCharacters[index]
+}
+
 
